@@ -153,57 +153,58 @@ Operating System: Ubuntu 20.04.5 LTS (or compatible Linux distribution)
 Python: Python 3.8 (e.g., Python 3.8.10)
 
 2. Required Tools and Packages
-a. Python and Virtual Environment
-Install Python 3.8 and required tools:
-sudo apt-get update
-sudo apt-get install python3.8 python3.8-dev python3.8-venv
+   
+ a. Python and Virtual Environment
+    Install Python 3.8 and required tools:
+    sudo apt-get update
+    sudo apt-get install python3.8 python3.8-dev python3.8-venv
 
-Set up a virtual environment:
-python3.8 -m venv venv_py38
-source venv_py38/bin/activate
+    Set up a virtual environment:
+    python3.8 -m venv venv_py38
+    source venv_py38/bin/activate
 
-b. Python Dependencies:
-Install required Python packages using requirements.txt:
-python3.8 -m pip install -r requirements.txt
+ b. Python Dependencies:
+    Install required Python packages using requirements.txt:
+    python3.8 -m pip install -r requirements.txt
 
-c. Docker
-Install Docker for managing containerized workflows:
-sudo apt-get install docker.io
+ c. Docker
+    Install Docker for managing containerized workflows:
+    sudo apt-get install docker.io
 
-Add your user to the Docker group to avoid using sudo:
-sudo usermod -aG docker $USER
+    Add your user to the Docker group to avoid using sudo:
+    sudo usermod -aG docker $USER
 
-Verify Docker installation:
-docker --version
-docker ps
+    Verify Docker installation:
+    docker --version
+    docker ps
 
-d. Allure CLI
-Install Allure CLI for generating and viewing test reports:
-wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.20.1/allure-commandline-2.20.1.tgz
-tar -zxvf allure-commandline-2.20.1.tgz -C /opt/
-export PATH=$PATH:/opt/allure-2.20.1/bin
+ d. Allure CLI
+    Install Allure CLI for generating and viewing test reports:
+    wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.20.1/allure-commandline-2.20.1.tgz
+    tar -zxvf allure-commandline-2.20.1.tgz -C /opt/
+    export PATH=$PATH:/opt/allure-2.20.1/bin
 
-Verify Allure installation:
-allure --version
+    Verify Allure installation:
+    allure --version
 
-e. Firefox and Geckodriver
-Install Firefox browser:[version: Mozilla Firefox 136.0]
-sudo apt-get install firefox
+ e. Firefox and Geckodriver
+    Install Firefox browser:[version: Mozilla Firefox 136.0]
+    sudo apt-get install firefox
 
-Install Geckodriver for Selenium WebDriver:
-wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
-tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
-sudo mv geckodriver /usr/local/bin/
-chmod +x /usr/local/bin/geckodriver
+    Install Geckodriver for Selenium WebDriver:
+    wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
+    tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
+    sudo mv geckodriver /usr/local/bin/
+    chmod +x /usr/local/bin/geckodriver
 
-Verify Geckodriver installation:
-geckodriver --version
+    Verify Geckodriver installation:
+    geckodriver --version
 
-Note:
-Drivers folder contains the geckodriver binary if you are not installing it globally.
+    Note:
+    Drivers folder contains the geckodriver binary if you are not installing it globally.
 
-Ensure the results directory has appropriate write permissions:
-chmod -R 755 jfrog_xray/results
+    Ensure the results directory has appropriate write permissions:
+    chmod -R 755 jfrog_xray/results
 
 ## Code Quality Tools
 The JFrog Xray automation framework uses tools like pre-commit and Flake8 to ensure code quality and consistency.
