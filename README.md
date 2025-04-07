@@ -113,15 +113,15 @@ It simplifies test setup by providing reusable fixtures and hooks for logging, c
 
 - `requirements.txt`: File lists all the Python dependencies required for the JFrog Xray automation framework. It ensures that all necessary libraries and their compatible versions are installed for the framework to function correctly.
 
-## How to add a test suite/test case:
-- Navigate to the testsuites folder.
-Create a new Python file for your test suite. For example:
- in jfrog_xray/testsuites. See `test_jfrog_xray_e2e_violation_validation.py` as a basic example.
+## How to add a test suite:
+- Navigate to the testsuites folder.[jfrog_xray/testsuites]
+- Create a new Python file for your test suite. For example:
+  in jfrog_xray/testsuites. See `test_jfrog_xray_e2e_violation_validation.py` as a basic example.
 - Import required library files, call existing functions. 
-Example:
-import pytest
-from util.jfrog_scan_helper import scan_artifact
-from util.logging import log_test_metadata
+  Example:
+  import pytest
+  from util.jfrog_scan_helper import scan_artifact
+  from util.logging import log_test_metadata
 - Write your test cases using the pytest framework. Use descriptive function names and include relevant assertions.(Reference file: jfrog_xray/testsuites/test_jfrog_xray_e2e_violation_validation.py)
 - Use markers for running and grouping tests, test_matadata fixture to add in report
 - Leverage the fixture defined in conftest.py for logging, configuration, or WebDriver setup
