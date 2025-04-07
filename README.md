@@ -180,6 +180,7 @@ Python: Python 3.8 (e.g., Python 3.8.10)
 
  d. Allure CLI
     Install Allure CLI for generating and viewing test reports:
+    
     wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.20.1/allure-commandline-2.20.1.tgz
     tar -zxvf allure-commandline-2.20.1.tgz -C /opt/
     export PATH=$PATH:/opt/allure-2.20.1/bin
@@ -189,6 +190,7 @@ Python: Python 3.8 (e.g., Python 3.8.10)
 
  e. Firefox and Geckodriver
     Install Firefox browser:[version: Mozilla Firefox 136.0]
+    
     sudo apt-get install firefox
 
     Install Geckodriver for Selenium WebDriver:
