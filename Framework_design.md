@@ -73,6 +73,7 @@
             ...
 
     3.2 API Interactions
+   
         Encapsulated in the JFrogAPIClient class.
         Provides methods for:
         Token generation (generate_api_token).
@@ -82,6 +83,7 @@
         Violation retrieval (get_violations).
 
     3.3 UI Interactions
+   
         Implemented using the Page Object Model (POM) pattern.
         Each page (e.g., Login, Dashboard, Violations) has its own class with methods for interacting with UI elements.
         Example:
@@ -89,6 +91,7 @@
         login_page.login(jfrog_config['username'], jfrog_config['password'])
 
     3.4 Docker Client
+   
         Provides methods for Docker operations:
         Pulling images (pull_image).
         Tagging images (tag_image).
@@ -96,17 +99,20 @@
         Logging into the Docker registry (login_to_registry).
 
     3.5 Logging
+   
         Centralized logging using a custom logger (util/logging.py).
         Logs are categorized by severity (INFO, WARNING, ERROR) and include detailed messages for debugging.
 
    3.6 Configuration Management
+   
         Test configurations are passed as dictionaries (jfrog_config).
         Includes details like:
         JFrog credentials (username, password).
         Repository and policy names (repo_name, policy_name).
         Docker image details (source_image, target_image).
 
-5. Workflow Design
+6. Workflow Design
+   
     4.1 End-to-End Workflow
 
         Repository Creation:
@@ -134,12 +140,15 @@
         Log in to the JFrog UI.
         Navigate to the Xray section and validate violations displayed in the UI.
 
-6. Best Practices
+8. Best Practices
+   
     5.1 Modular Design
+   
         Separate API, UI, and Docker interactions into distinct layers.
         Use reusable methods for common operations (e.g., token generation, repository creation).
 
     5.2 Error Handling
+   
         Implement robust error handling with retries for transient failures.
 
         if response.status_code == 401:  # Token expired or invalid
@@ -147,58 +156,65 @@
             self.login()
 
     5.3 Logging
+   
         Use structured logging for better traceability.
         Include detailed messages for each step of the workflow.
 
     5.4 Test Metadata
+   
         Use @pytest.mark.test_metadata to document test objectives, preconditions, and expected results.
 
     5.5 Configuration Management
+   
         Store sensitive information (e.g., credentials) securely.
         Use environment variables or encrypted configuration files.
 
     5.6 Scalability
+   
         Design the framework to support additional workflows is easier
         Add new page objects and API methods as needed in same hierarchy
 
     5.7 Best Practises
+   
         Code Quality and Conventions:
 
-- **Pre-Commit Hooks**:
-  - Automatically runs checks before committing code to the repository.
-  - Ensures code formatting, linting, and import sorting are enforced.
-  - Configured using the `.pre-commit-config.yaml`
+        - **Pre-Commit Hooks**:
+          - Automatically runs checks before committing code to the repository.
+          - Ensures code formatting, linting, and import sorting are enforced.
+          - Configured using the `.pre-commit-config.yaml`
 
-- **Flake8**:
-  - Lints Python code for style guide violations, programming errors, and code complexity issues.
-  - Configured using the `.flake8` file to define rules like maximum line
+        - **Flake8**:
+          - Lints Python code for style guide violations, programming errors, and code complexity issues.
+          - Configured using the `.flake8` file to define rules like maximum line
 
-- **Black**:
-  - Formats Python code to ensure consistency across the project.
-  - Integrated as a pre-commit hook.
+        - **Black**:
+          - Formats Python code to ensure consistency across the project.
+          - Integrated as a pre-commit hook.
 
-- **isort**:
-  - Sorts imports in Python files to maintain a consistent order.
-  - Integrated as a pre-commit hook.
+        - **isort**:
+          - Sorts imports in Python files to maintain a consistent order.
+          - Integrated as a pre-commit hook.
 
-These tools are seamlessly integrated into the development workflow to maintain high code quality.
+        These tools are seamlessly integrated into the development workflow to maintain high code quality.
 
 6. Tools and Technologies
-    Programming Language: Python 3.8
-    Test Framework: pytest
-    API Client: requests
-    UI Automation: Selenium WebDriver
-    Docker Client: Python Docker SDK
-    Logging: Python logging module
-    Configuration Management: YAML or JSON files
-    Reporting: Alure and junitxml
+   
+        Programming Language: Python 3.8
+        Test Framework: pytest
+        API Client: requests
+        UI Automation: Selenium WebDriver
+        Docker Client: Python Docker SDK
+        Logging: Python logging module
+        Configuration Management: YAML or JSON files
+        Reporting: Alure and junitxml
 
-7. Future Enhancements
+8. Future Enhancements
 
     Parallel Execution:
     Use pytest-xdist for running tests in parallel.
 
 Integration with CI/CD:
+
     Integrate the framework with GitHub Actions for automated test execution.
 
 
