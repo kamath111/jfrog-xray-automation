@@ -8,9 +8,18 @@
     Provide API and UI-based validations for comprehensive test coverage.
     Ensure modularity, scalability, and maintainability of the framework.
 
-2. Framework Architecture
+2. Framework Architecture/Project structure
+
+       Layered Architecture:
+        Test Layer: Contains test cases written using pytest for end-to-end workflows.
+        Service Layer: Encapsulates API interactions with JFrog Artifactory and Xray.
+        UI Layer: Implements Selenium-based Page Object Models (POM) for UI automation.
+        Utility Layer: Provides reusable utilities for logging, subprocess handling, and waiting for scan completion.
+       Extensibility: The framework supports adding new workflows, API methods, and page objects with minimal changes
    
     2.1 Layers of the Framework
+
+   
 
         jfrog_xray/testsuites
         Test Layer:
@@ -208,7 +217,23 @@
         Configuration Management: YAML or JSON files
         Reporting: Alure and junitxml
 
-8. Future Enhancements
+7. Usage of Patterns
+   
+        Page Object Model (POM): Used for UI automation to encapsulate page-specific logic and actions.
+        Factory Pattern: Used for creating reusable API clients (e.g., JFrogAPIClient).
+        Command Pattern: Docker operations (e.g., pull, push) are executed using subprocess commands encapsulated in the DockerClient class.
+
+8. Reporting
+   
+        Allure Reports:
+        Interactive HTML reports generated for test execution.
+        Includes test metadata, logs, and screenshots.
+        JUnit XML Reports:
+        Machine-readable reports for CI/CD integration.
+        Summary Reports:
+        High-level summaries of test results (e.g., pass/fail counts) are logged and shared with stakeholders.
+
+10. Future Enhancements
 
     Parallel Execution:
     Use pytest-xdist for running tests in parallel.
