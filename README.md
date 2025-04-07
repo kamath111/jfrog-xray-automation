@@ -60,18 +60,18 @@ Ensure the driver is executable and correctly configured in the system's PATH
 - `page_objects/`: This folder contains Page Object Model (POM) classes for automating interactions with the JFrog Xray web interface. Each page class encapsulates the locators and methods for interacting with a specific page or component of the JFrog Xray web interface.
 These classes are used in test scripts to perform actions like logging in, navigating to sections, and validating UI elements.
 
-Subdirectories and Files:
-page_objects.py:
-Serves as the base class for all page objects in the framework. It provides reusable methods for interacting with web elements, such as clicking elements, entering text, taking screenshots, and waiting for elements.
+  Subdirectories and Files:
+    page_objects.py:
+    Serves as the base class for all page objects in the framework. It provides reusable methods for interacting with web elements, such as clicking elements, entering text, taking       screenshots, and waiting for elements.
 
-login_page.py:
-Represents the login page of the JFrog Artifactory web interface.
+    login_page.py:
+    Represents the login page of the JFrog Artifactory web interface.
 
-dashboard_page.py:
-Represents the Dashboard page in the JFrog Artifactory web interface.
+    dashboard_page.py:
+    Represents the Dashboard page in the JFrog Artifactory web interface.
 
-violations_page.py:
-Represents the Violations page in the JFrog Artifactory web interface.
+    violations_page.py:
+    Represents the Violations page in the JFrog Artifactory web interface.
 
 - `test_data/`: This folder contains configuration files and test data required for running JFrog Xray automation tests. It centralizes all the necessary parameters, credentials, and settings for seamless test execution.
 config.yaml:
