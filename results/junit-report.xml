@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="115.036" timestamp="2025-04-07T09:31:33.104300" hostname="SystemTest25"><testcase classname="testsuites.test_jfrog_xray_e2e_violation_validation" name="test_docker_image_scan_e2e" time="114.831" /></testsuite></testsuites>

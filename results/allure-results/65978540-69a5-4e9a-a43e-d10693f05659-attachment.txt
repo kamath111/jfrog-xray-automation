@@ -1,0 +1,64 @@
+[32mINFO    [0m util.logging:conftest.py:264 Logging test metadata:
+[32mINFO    [0m util.logging:conftest.py:265 Test ID: test_docker_image_scan_e2e
+[32mINFO    [0m util.logging:conftest.py:266 Objective: Test E2E validation for uploading a Docker image to JFrog Artifactory, scanning it with JFrog Xray through Jfrog Apis and validating the results against a security policy through JFrog UI.
+[32mINFO    [0m util.logging:conftest.py:267 Description: This test verifies the complete workflow of uploading a Docker image to JFrog Artifactory, scanning it with JFrog Xray, and validating the results against a predefined security policy. The test includes repository creation, Docker image upload, security policy creation, watch creation through Jfrog Apis, and validation of violations through UI
+[32mINFO    [0m util.logging:conftest.py:268 Precondition: Jfrog account is created for admin user before starting the test. Token for Jfrog account is available. Security policy and watch is set up in JFrog Xray. 
+[32mINFO    [0m util.logging:conftest.py:269 Expected Result: The Docker repository is created, the image is uploaded and scanned successfully through Jfrog Apis security violations are detected and validated against the predefined policy, and only critical or high-severity violations are displayed in the JFrog Xray UI.
+[35mDEBUG   [0m util.logging:jfrog_service.py:47 Initializing JFrogAPIClient instance.
+[32mINFO    [0m util.logging:jfrog_service.py:459 Generating API token for user 'kamathsh'.
+[32mINFO    [0m util.logging:jfrog_service.py:470 Successfully generated API token for user 'kamathsh'.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:89 Step1: Create a docker repository
+[32mINFO    [0m util.logging:jfrog_service.py:159 Creating repository 'docker-local' with payload: {'key': 'docker-local', 'packageType': 'docker', 'rclass': 'local', 'xrayIndex': True}
+[32mINFO    [0m util.logging:jfrog_service.py:167 Successfully created repository 'docker-local'.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:92 Expected Result: Docker repositorydocker-local is created
+[32mINFO    [0m util.logging:jfrog_service.py:196 Fetching details for repository 'docker-local'.
+[32mINFO    [0m util.logging:jfrog_service.py:204 Successfully fetched details for repository 'docker-local'.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:97 Step2: Push Docker image to JFrog Artifactory
+[32mINFO    [0m util.logging:clients.py:67 Command Output: ['3.9: Pulling from library/alpine', 'Digest: sha256:414e0518bb9228d35e4cd5165567fb91d26c6a214e9c95899e1e056fcd349011', 'Status: Image is up to date for alpine:3.9', 'docker.io/library/alpine:3.9']
+[32mINFO    [0m util.logging:clients.py:96 Command Output: ['Login Succeeded']
+[32mINFO    [0m util.logging:clients.py:133 Command Output: []
+[32mINFO    [0m util.logging:clients.py:167 Command Output: ['The push refers to repository [trialxylzua.jfrog.io/docker-local/alpine]', '89ae5c4ee501: Preparing', '89ae5c4ee501: Layer already exists', '3.9: digest: sha256:65b3a80ebe7471beecbc090c5b2cdd0aafeaefa0715f8f12e40dc918a3a70e32 size: 528']
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:103 Expected Result: Docker image is successfully pushed to JFrog Artifactory repository 'docker-local'
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:106 Step3: Create the Security Policy
+[32mINFO    [0m util.logging:jfrog_service.py:260 Creating security policy 'sec_policy_1-20250407093135' with payload: {'name': 'sec_policy_1-20250407093135', 'description': 'Security Policy', 'type': 'security', 'rules': [{'name': 'some_rule', 'criteria': {'malicious_package': False, 'fix_version_dependant': False, 'min_severity': 'high'}, 'actions': {'mails': [], 'webhooks': [], 'fail_build': False, 'block_release_bundle_distribution': False, 'block_release_bundle_promotion': False, 'notify_deployer': False, 'notify_watch_recipients': False, 'create_ticket_enabled': False, 'block_download': {'active': False, 'unscanned': False}}, 'priority': 1}]}
+[32mINFO    [0m util.logging:jfrog_service.py:268 Successfully created security policy 'sec_policy_1-20250407093135'.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:109 Expected Result: Policy: sec_policy_1-20250407093135 created successfully
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:112 Step4: Create a watch
+[32mINFO    [0m util.logging:jfrog_service.py:323 Creating watch 'example1-watch-20250407093135' with payload: {'general_data': {'name': 'example1-watch-20250407093135', 'description': 'Watch Creation', 'active': True}, 'project_resources': {'resources': [{'type': 'repository', 'bin_mgr_id': 'default', 'name': 'docker-local', 'filters': [{'type': 'regex', 'value': '.*'}]}]}, 'assigned_policies': [{'name': 'sec_policy_1-20250407093135', 'type': 'security'}]}
+[32mINFO    [0m util.logging:jfrog_service.py:332 Successfully created watch 'example1-watch-20250407093135'.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:115 Expected Result:: Watch: example1-watch-20250407093135 created successfully
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:117 Step5: Check scan status and wait for completion
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+[32mINFO    [0m util.logging:jfrog_service.py:361 Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+[32mINFO    [0m util.logging:jfrog_service.py:371 Scan status for artifact 'alpine/3.9/manifest.json': DONE
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:119 Expected Result: Scan completed successfully with status as 'Done'. Proceeding to validate violations.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:121 Step6: Verify the violations in JFrog Xray
+[32mINFO    [0m util.logging:jfrog_service.py:418 Fetching violations for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'filters': {'watch_name': 'example1-watch-20250407093135', 'violation_type': 'security', 'min_severity': 'High', 'resources': {'artifacts': [{'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}]}}, 'pagination': {'order_by': 'created', 'direction': 'asc', 'limit': 100, 'offset': 1}}
+[32mINFO    [0m util.logging:jfrog_service.py:427 Successfully fetched violations for artifact 'alpine/3.9/manifest.json'.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:125 Expected Result: Total violations found: 36
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:130 UI Validations
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:131 Step7: Logging into JFrog UI as admin user
+[32mINFO    [0m util.logging:page_objects.py:208 Page Title: Login - JFrog
+[32mINFO    [0m util.logging:page_objects.py:209 Clicked on element: ('xpath', "//button[@type='submit']")
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:135 Expected Result: Logged into JFrog UI
+[32mINFO    [0m util.logging:page_objects.py:208 Page Title: JFrog
+[32mINFO    [0m util.logging:page_objects.py:209 Clicked on element: ('xpath', "//span[@class='vsm--title' and text()='Xray']")
+[32mINFO    [0m util.logging:page_objects.py:208 Page Title: JFrog
+[32mINFO    [0m util.logging:page_objects.py:209 Clicked on element: ('xpath', "//span[text()='docker-local']")
+[32mINFO    [0m util.logging:page_objects.py:208 Page Title: JFrog
+[32mINFO    [0m util.logging:page_objects.py:209 Clicked on element: ('xpath', "//span[text()='alpine/3.9']")
+[32mINFO    [0m util.logging:page_objects.py:227 Clicked on the element: <selenium.webdriver.remote.webelement.WebElement (session="41c04847-aa69-4eba-88ab-3e6c3eb5b25b", element="ca1102ce-db07-4f8a-beee-e99a05a0ec28")>
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:149 Step8: Verify Violations Severity
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:155 Expected Result: Only Critical anbd high violations are listed as policy is set to fail on critical and high severity.
+[32mINFO    [0m util.logging:test_jfrog_xray_e2e_violation_validation.py:156 Test completed successfully.

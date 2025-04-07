@@ -1,0 +1,64 @@
+2025-04-07 16:31:35,241 Thrd:MainThread: [conftest - log_test_metadata - 264]: INFO Logging test metadata:
+2025-04-07 16:31:35,242 Thrd:MainThread: [conftest - log_test_metadata - 265]: INFO Test ID: test_docker_image_scan_e2e
+2025-04-07 16:31:35,242 Thrd:MainThread: [conftest - log_test_metadata - 266]: INFO Objective: Test E2E validation for uploading a Docker image to JFrog Artifactory, scanning it with JFrog Xray through Jfrog Apis and validating the results against a security policy through JFrog UI.
+2025-04-07 16:31:35,242 Thrd:MainThread: [conftest - log_test_metadata - 267]: INFO Description: This test verifies the complete workflow of uploading a Docker image to JFrog Artifactory, scanning it with JFrog Xray, and validating the results against a predefined security policy. The test includes repository creation, Docker image upload, security policy creation, watch creation through Jfrog Apis, and validation of violations through UI
+2025-04-07 16:31:35,242 Thrd:MainThread: [conftest - log_test_metadata - 268]: INFO Precondition: Jfrog account is created for admin user before starting the test. Token for Jfrog account is available. Security policy and watch is set up in JFrog Xray. 
+2025-04-07 16:31:35,242 Thrd:MainThread: [conftest - log_test_metadata - 269]: INFO Expected Result: The Docker repository is created, the image is uploaded and scanned successfully through Jfrog Apis security violations are detected and validated against the predefined policy, and only critical or high-severity violations are displayed in the JFrog Xray UI.
+2025-04-07 16:31:35,244 Thrd:MainThread: [jfrog_service - __init__ - 47]: DEBUG Initializing JFrogAPIClient instance.
+2025-04-07 16:31:35,244 Thrd:MainThread: [jfrog_service - generate_api_token - 459]: INFO Generating API token for user 'kamathsh'.
+2025-04-07 16:31:35,622 Thrd:MainThread: [jfrog_service - generate_api_token - 470]: INFO Successfully generated API token for user 'kamathsh'.
+2025-04-07 16:31:35,622 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 89]: INFO Step1: Create a docker repository
+2025-04-07 16:31:35,622 Thrd:MainThread: [jfrog_service - create_repository - 159]: INFO Creating repository 'docker-local' with payload: {'key': 'docker-local', 'packageType': 'docker', 'rclass': 'local', 'xrayIndex': True}
+2025-04-07 16:31:36,032 Thrd:MainThread: [jfrog_service - create_repository - 167]: INFO Successfully created repository 'docker-local'.
+2025-04-07 16:31:36,033 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 92]: INFO Expected Result: Docker repositorydocker-local is created
+2025-04-07 16:31:36,033 Thrd:MainThread: [jfrog_service - get_repository - 196]: INFO Fetching details for repository 'docker-local'.
+2025-04-07 16:31:36,341 Thrd:MainThread: [jfrog_service - get_repository - 204]: INFO Successfully fetched details for repository 'docker-local'.
+2025-04-07 16:31:36,341 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 97]: INFO Step2: Push Docker image to JFrog Artifactory
+2025-04-07 16:31:37,138 Thrd:MainThread: [clients - pull_image - 67]: INFO Command Output: ['3.9: Pulling from library/alpine', 'Digest: sha256:414e0518bb9228d35e4cd5165567fb91d26c6a214e9c95899e1e056fcd349011', 'Status: Image is up to date for alpine:3.9', 'docker.io/library/alpine:3.9']
+2025-04-07 16:31:38,262 Thrd:MainThread: [clients - login_to_registry - 96]: INFO Command Output: ['Login Succeeded']
+2025-04-07 16:31:38,286 Thrd:MainThread: [clients - tag_image - 133]: INFO Command Output: []
+2025-04-07 16:31:40,139 Thrd:MainThread: [clients - push_image - 167]: INFO Command Output: ['The push refers to repository [trialxylzua.jfrog.io/docker-local/alpine]', '89ae5c4ee501: Preparing', '89ae5c4ee501: Layer already exists', '3.9: digest: sha256:65b3a80ebe7471beecbc090c5b2cdd0aafeaefa0715f8f12e40dc918a3a70e32 size: 528']
+2025-04-07 16:31:40,139 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 103]: INFO Expected Result: Docker image is successfully pushed to JFrog Artifactory repository 'docker-local'
+2025-04-07 16:31:40,140 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 106]: INFO Step3: Create the Security Policy
+2025-04-07 16:31:40,140 Thrd:MainThread: [jfrog_service - create_security_policy - 260]: INFO Creating security policy 'sec_policy_1-20250407093135' with payload: {'name': 'sec_policy_1-20250407093135', 'description': 'Security Policy', 'type': 'security', 'rules': [{'name': 'some_rule', 'criteria': {'malicious_package': False, 'fix_version_dependant': False, 'min_severity': 'high'}, 'actions': {'mails': [], 'webhooks': [], 'fail_build': False, 'block_release_bundle_distribution': False, 'block_release_bundle_promotion': False, 'notify_deployer': False, 'notify_watch_recipients': False, 'create_ticket_enabled': False, 'block_download': {'active': False, 'unscanned': False}}, 'priority': 1}]}
+2025-04-07 16:31:40,506 Thrd:MainThread: [jfrog_service - create_security_policy - 268]: INFO Successfully created security policy 'sec_policy_1-20250407093135'.
+2025-04-07 16:31:40,506 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 109]: INFO Expected Result: Policy: sec_policy_1-20250407093135 created successfully
+2025-04-07 16:31:40,506 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 112]: INFO Step4: Create a watch
+2025-04-07 16:31:40,507 Thrd:MainThread: [jfrog_service - create_watch - 323]: INFO Creating watch 'example1-watch-20250407093135' with payload: {'general_data': {'name': 'example1-watch-20250407093135', 'description': 'Watch Creation', 'active': True}, 'project_resources': {'resources': [{'type': 'repository', 'bin_mgr_id': 'default', 'name': 'docker-local', 'filters': [{'type': 'regex', 'value': '.*'}]}]}, 'assigned_policies': [{'name': 'sec_policy_1-20250407093135', 'type': 'security'}]}
+2025-04-07 16:31:41,284 Thrd:MainThread: [jfrog_service - create_watch - 332]: INFO Successfully created watch 'example1-watch-20250407093135'.
+2025-04-07 16:31:41,285 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 115]: INFO Expected Result:: Watch: example1-watch-20250407093135 created successfully
+2025-04-07 16:31:41,285 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 117]: INFO Step5: Check scan status and wait for completion
+2025-04-07 16:31:41,285 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:31:41,642 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+2025-04-07 16:31:51,653 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:31:52,027 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+2025-04-07 16:32:02,037 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:32:02,401 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+2025-04-07 16:32:12,411 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:32:12,773 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+2025-04-07 16:32:22,784 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:32:23,160 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+2025-04-07 16:32:33,171 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:32:33,501 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': NOT_SCANNED
+2025-04-07 16:32:43,511 Thrd:MainThread: [jfrog_service - check_scan_status - 361]: INFO Checking scan status for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}
+2025-04-07 16:32:43,834 Thrd:MainThread: [jfrog_service - check_scan_status - 371]: INFO Scan status for artifact 'alpine/3.9/manifest.json': DONE
+2025-04-07 16:32:43,835 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 119]: INFO Expected Result: Scan completed successfully with status as 'Done'. Proceeding to validate violations.
+2025-04-07 16:32:43,835 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 121]: INFO Step6: Verify the violations in JFrog Xray
+2025-04-07 16:32:43,835 Thrd:MainThread: [jfrog_service - get_violations - 418]: INFO Fetching violations for artifact 'alpine/3.9/manifest.json' in repository 'docker-local' with payload: {'filters': {'watch_name': 'example1-watch-20250407093135', 'violation_type': 'security', 'min_severity': 'High', 'resources': {'artifacts': [{'repo': 'docker-local', 'path': 'alpine/3.9/manifest.json'}]}}, 'pagination': {'order_by': 'created', 'direction': 'asc', 'limit': 100, 'offset': 1}}
+2025-04-07 16:32:44,692 Thrd:MainThread: [jfrog_service - get_violations - 427]: INFO Successfully fetched violations for artifact 'alpine/3.9/manifest.json'.
+2025-04-07 16:32:44,693 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 125]: INFO Expected Result: Total violations found: 36
+2025-04-07 16:32:44,693 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 130]: INFO UI Validations
+2025-04-07 16:32:44,693 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 131]: INFO Step7: Logging into JFrog UI as admin user
+2025-04-07 16:32:58,642 Thrd:MainThread: [page_objects - click_element - 208]: INFO Page Title: Login - JFrog
+2025-04-07 16:32:58,642 Thrd:MainThread: [page_objects - click_element - 209]: INFO Clicked on element: ('xpath', "//button[@type='submit']")
+2025-04-07 16:32:58,642 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 135]: INFO Expected Result: Logged into JFrog UI
+2025-04-07 16:33:02,149 Thrd:MainThread: [page_objects - click_element - 208]: INFO Page Title: JFrog
+2025-04-07 16:33:02,150 Thrd:MainThread: [page_objects - click_element - 209]: INFO Clicked on element: ('xpath', "//span[@class='vsm--title' and text()='Xray']")
+2025-04-07 16:33:10,591 Thrd:MainThread: [page_objects - click_element - 208]: INFO Page Title: JFrog
+2025-04-07 16:33:10,591 Thrd:MainThread: [page_objects - click_element - 209]: INFO Clicked on element: ('xpath', "//span[text()='docker-local']")
+2025-04-07 16:33:16,094 Thrd:MainThread: [page_objects - click_element - 208]: INFO Page Title: JFrog
+2025-04-07 16:33:16,094 Thrd:MainThread: [page_objects - click_element - 209]: INFO Clicked on element: ('xpath', "//span[text()='alpine/3.9']")
+2025-04-07 16:33:22,087 Thrd:MainThread: [page_objects - click_element_javascript - 227]: INFO Clicked on the element: <selenium.webdriver.remote.webelement.WebElement (session="41c04847-aa69-4eba-88ab-3e6c3eb5b25b", element="ca1102ce-db07-4f8a-beee-e99a05a0ec28")>
+2025-04-07 16:33:27,129 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 149]: INFO Step8: Verify Violations Severity
+2025-04-07 16:33:27,449 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 155]: INFO Expected Result: Only Critical anbd high violations are listed as policy is set to fail on critical and high severity.
+2025-04-07 16:33:27,449 Thrd:MainThread: [test_jfrog_xray_e2e_violation_validation - test_docker_image_scan_e2e - 156]: INFO Test completed successfully.
