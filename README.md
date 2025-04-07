@@ -74,6 +74,7 @@ These classes are used in test scripts to perform actions like logging in, navig
     Represents the Violations page in the JFrog Artifactory web interface.
 
 - `test_data/`: This folder contains configuration files and test data required for running JFrog Xray automation tests. It centralizes all the necessary parameters, credentials, and settings for seamless test execution.
+  
 config.yaml:
 Provides configuration details for JFrog Artifactory and Xray, including repository settings, authentication credentials, and security policies.
 This file is loaded by the test framework to configure the environment and test parameters dynamically and these values can be overriden with Clis(during test run)
