@@ -361,81 +361,81 @@ To view the Allure report after the test run:
 
 # Troubleshooting
 1. Allure CLI Not Found
-  Issue: Running allure serve results in a "command not found" error.
-  Solution: Ensure Allure CLI is installed and added to the system's PATH.
-  Verify installation:
-  allure --version
+    Issue: Running allure serve results in a "command not found" error.
+    Solution: Ensure Allure CLI is installed and added to the system's PATH.
+    Verify installation:
+    allure --version
 
-  If not installed, follow the installation steps in the Reports of Test Run section
+    If not installed, follow the installation steps in the Reports of Test Run section
 
 2. Missing geckodriver or Firefox
-  Issue: Tests fail with errors related to the WebDriver or browser not being found.
-  Solution:
-  Install Firefox:
-  sudo apt-get install firefox
-  version: Mozilla Firefox 136.0
+    Issue: Tests fail with errors related to the WebDriver or browser not being found.
+    Solution:
+    Install Firefox:
+    sudo apt-get install firefox
+    version: Mozilla Firefox 136.0
 
-  Install geckodriver:
-  wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
-  tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
+    Install geckodriver:
+    wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
+    tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
 
 3. Python Dependency Issues
-  Issue: Errors occur due to missing or incompatible Python packages.
-  Solution:
-  Ensure you are using Python 3.8:
-  python3.8 --version
-  Install dependencies:
-  python3.8 -m pip install -r requirements.txt
+    Issue: Errors occur due to missing or incompatible Python packages.
+    Solution:
+    Ensure you are using Python 3.8:
+    python3.8 --version
+    Install dependencies:
+    python3.8 -m pip install -r requirements.txt
 
 4. Test Fails Due to Incorrect Configuration
-  Issue: Tests fail due to missing or incorrect configuration in config.yaml.
-  Solution:
-  Verify the config.yaml file contains valid values for:
-  repoName
-  user and password
-  baseUrl
-  Ensure the JFrog Artifactory/Xray instance is accessible from the test environment.
+    Issue: Tests fail due to missing or incorrect configuration in config.yaml.
+    Solution:
+    Verify the config.yaml file contains valid values for:
+    repoName
+    user and password
+    baseUrl
+    Ensure the JFrog Artifactory/Xray instance is accessible from the test environment.
 
 5. Allure Report Not Generated
-  Issue: The allure-results folder is empty after running tests.
-  Solution:
-  Ensure the --alluredir option is included in the pytest command:
-  pytest testsuites/<test_file>.py --alluredir=results/allure-results
+    Issue: The allure-results folder is empty after running tests.
+    Solution:
+    Ensure the --alluredir option is included in the pytest command:
+    pytest testsuites/<test_file>.py --alluredir=results/allure-results
 
   Verify that the allure-pytest package is installed:
   python3.8 -m pip install allure-pytest
 
 6. Permission Denied Errors
-  Issue: Permission errors occur when running tests or accessing files.
-  Solution:
-  Ensure you have write permissions for the results directory:
-  chmod -R 755 jfrog_xray/results
-  Run the tests as a user with appropriate permissions.
+    Issue: Permission errors occur when running tests or accessing files.
+    Solution:
+    Ensure you have write permissions for the results directory:
+    chmod -R 755 jfrog_xray/results
+    Run the tests as a user with appropriate permissions.
 
-7.  Docker Issues
-  Issue: Tests involving Docker fail due to Docker not being installed or accessible.
-  Solution:
-  Install Docker:
-  sudo apt-get install docker.io
+7. Docker Issues
+    Issue: Tests involving Docker fail due to Docker not being installed or accessible.
+    Solution:
+    Install Docker:
+    sudo apt-get install docker.io
 
-  Add your user to the Docker group:
-  sudo usermod -aG docker $USER
+    Add your user to the Docker group:
+    sudo usermod -aG docker $USER
 
-  Verify Docker is running:
-  docker ps
+    Verify Docker is running:
+    docker ps
 
 8. Selenium WebDriver Errors
-  Issue: Selenium WebDriver fails to initialize or interact with the browser.
-  Solution:
-  Ensure the correct version of selenium is installed:
-  python3.8 -m pip install selenium==4.1.0
-  Verify that the WebDriver matches the installed browser version.
+    Issue: Selenium WebDriver fails to initialize or interact with the browser.
+    Solution:
+    Ensure the correct version of selenium is installed:
+    python3.8 -m pip install selenium==4.1.0
+    Verify that the WebDriver matches the installed browser version.
 
-9. . Network Connectivity Issues
-  Issue: Tests fail due to network connectivity issues with JFrog Artifactory/Xray.
-  Solution:
-  Verify the network connection to the JFrog instance
-  ping <jfrog_base_url>
-  Check if a proxy or firewall is blocking access.
+9. Network Connectivity Issues
+    Issue: Tests fail due to network connectivity issues with JFrog Artifactory/Xray.
+    Solution:
+    Verify the network connection to the JFrog instance
+    ping <jfrog_base_url>
+    Check if a proxy or firewall is blocking access.
 
-  These troubleshooting steps should help resolve common issues encountered while running the JFrog Xray automation framework. 
+    These troubleshooting steps should help resolve common issues encountered while running the JFrog Xray automation framework. 
