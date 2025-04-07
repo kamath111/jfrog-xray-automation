@@ -216,63 +216,71 @@ Pre-commit is a framework for managing and maintaining multi-language pre-commit
 
 - Setup Pre-Commit
 Install pre-commit:(This is already defind as part of requirements.txt)
-pip install pre-commit
+
+  pip install pre-commit
 
 Install the pre-commit hooks defined in the .pre-commit-config.yaml file:
-pre-commit install
+
+  pre-commit install
 
 - Pre-Commit Hooks Used
-The following hooks are configured in .pre-commit-config.yaml:
+  
+    The following hooks are configured in .pre-commit-config.yaml:
 
-- black: Formats Python code to ensure consistency.
-- isort: Sorts imports in Python files.
-- flake8: Lints Python code for style and programming errors.
-- blacken-docs: Formats Python code in documentation.
-- seed-isort-config: Seeds the isort configuration with known standard library imports.
+    - black: Formats Python code to ensure consistency.
+    - isort: Sorts imports in Python files.
+    - flake8: Lints Python code for style and programming errors.
+    - blacken-docs: Formats Python code in documentation.
+    - seed-isort-config: Seeds the isort configuration with known standard library imports.
 
 - How It Works
-When you attempt to commit changes, pre-commit hooks will automatically run.
-If any hook fails, the commit will be blocked until the issues are resolved.
+  
+    When you attempt to commit changes, pre-commit hooks will automatically run.
+    If any hook fails, the commit will be blocked until the issues are resolved.
 
 - Skipping Pre-Commit Hooks
-To skip pre-commit hooks for a specific commit, use:
-git commit --no-verify
+  
+    To skip pre-commit hooks for a specific commit, use:
+    git commit --no-verify
 
 - Flake8
-Flake8 is a Python linting tool that checks your code for style guide violations, programming errors, and code complexity issues.
+  
+    Flake8 is a Python linting tool that checks your code for style guide violations, programming errors, and code complexity issues.
 
-- Install flake8:
-pip install flake8
+  - Install flake8:
+    
+      pip install flake8
 
-- The framework uses a .flake8 configuration file to define linting rules. The file includes:
+  - The framework uses a .flake8 configuration file to define linting rules. The file includes:
 
-max-line-length: Maximum allowed line length (default: 130).
-max-complexity: Maximum cyclomatic complexity for functions/methods (default: 18).
-select: Error codes to check (e.g., E, F, W).
-ignore: Error codes to ignore (e.g., E203, E501, W503).
+      max-line-length: Maximum allowed line length (default: 130).
+      max-complexity: Maximum cyclomatic complexity for functions/methods (default: 18).
+      select: Error codes to check (e.g., E, F, W).
+      ignore: Error codes to ignore (e.g., E203, E501, W503).
 
-- Running Flake8
-To lint your code using Flake8, run:
-flake8 .
+  - Running Flake8
+    
+    To lint your code using Flake8, run:
+    flake8 .
 
-- Customizing Flake8
-You can modify the .flake8 file to adjust linting rules. For example:
-[flake8]
-max-line-length = 130
-max-complexity = 18
-select = B,C,E,F,W,T4,B9
-ignore = E203, E501, W503
+  - Customizing Flake8
+    
+    You can modify the .flake8 file to adjust linting rules. For example:
+    
+      [flake8]
+      max-line-length = 130
+      max-complexity = 18
+      select = B,C,E,F,W,T4,B9
+      ignore = E203, E501, W503
 
 - Development Workflow
-Before committing changes, ensure that:
+    Before committing changes, ensure that:
 
-Code is formatted using black.
-Imports are sorted using isort.
-Code passes linting checks using flake8.
+    Code is formatted using black.
+    Imports are sorted using isort.
+    Code passes linting checks using flake8.
 
-Fix any issues reported by the hooks before committing
-
-
+    Fix any issues reported by the hooks before committing
 
 
 ## Running tests:
