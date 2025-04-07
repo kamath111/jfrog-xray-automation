@@ -5,7 +5,6 @@
 4. [Requirements](#requirements)
 5. [Prerequisites](#prerequisites)
 6. [Code Quality Tools](#codequalitytools)
-## Code Quality Tools
 7. [Running Tests](#running-tests)
 8. [Result of Test Run](#result-of-test-run)
 9. [Reports of Test Run](#reports-of-test-run)
