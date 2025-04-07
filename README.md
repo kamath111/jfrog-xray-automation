@@ -83,28 +83,28 @@ These classes are used in test scripts to perform actions like logging in, navig
 These tests validate both API and UI workflows, ensuring the correctness of JFrog Xray's functionality.
 
 - `util/`: This folder contains utility modules that provide helper functions and reusable components for various aspects of the JFrog Xray automation framework. These utilities support logging, subprocess management, UI interactions, and JFrog Xray-specific operations and test helpers.
-config_utils.py:
-Provides utility functions for managing and parsing configuration files used in the framework.
+  config_utils.py:
+    Provides utility functions for managing and parsing configuration files used in the framework.
 
-conftest_helper.py:
-Contains helper functions for parsing command-line arguments and setting up test configurations. Adds options like enabling Xray indexing, setting security policies, and specifying artifact paths.
+  conftest_helper.py:
+    Contains helper functions for parsing command-line arguments and setting up test configurations. Adds options like repo setting security policies, and specifying artifact paths.
 
-exception_util.py:
-Defines utility functions for handling and logging exceptions during test execution/test helpers
+  exception_util.py:
+    Defines utility functions for handling and logging exceptions during test execution/test helpers
 
-jfrog_scan_helper.py:
-Provides test helper functions for managing JFrog Xray scan operations.
+  jfrog_scan_helper.py:
+    Provides test helper functions for managing JFrog Xray scan operations.
 
-logging.py:
-Implements logging utilities for the framework.
-Sets up logging configurations.
-Provides functions for logging exceptions, masking sensitive data, and detailed logging.
+  logging.py:
+    Implements logging utilities for the framework.
+    Sets up logging configurations.
+    Provides functions for logging exceptions, masking sensitive data, and detailed logging.
 
-subprocess_helper.py:
-Provides helper functions for managing subprocesses, such as executing shell commands and capturing their output.
+  subprocess_helper.py:
+    Provides helper functions for managing subprocesses, such as executing shell commands and capturing their output.
 
-ui_helpers.py:
-Contains common helper functions for UI-based test suites.
+  ui_helpers.py:
+    Contains common helper functions for UI-based test suites.
 
 - `conftest/`: File provides pytest fixtures and hooks for configuring and managing the JFrog Artifactory/Xray automation framework. It centralizes test session setup, logging, WebDriver initialization, and JFrog-specific configurations.
 It simplifies test setup by providing reusable fixtures and hooks for logging, configuration, and WebDriver management.
