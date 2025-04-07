@@ -75,9 +75,9 @@ These classes are used in test scripts to perform actions like logging in, navig
 
 - `test_data/`: This folder contains configuration files and test data required for running JFrog Xray automation tests. It centralizes all the necessary parameters, credentials, and settings for seamless test execution.
   
-config.yaml:
-Provides configuration details for JFrog Artifactory and Xray, including repository settings, authentication credentials, and security policies.
-This file is loaded by the test framework to configure the environment and test parameters dynamically and these values can be overriden with Clis(during test run)
+  config.yaml:
+  Provides configuration details for JFrog Artifactory and Xray, including repository settings, authentication credentials, and security policies.
+  This file is loaded by the test framework to configure the environment and test parameters dynamically and these values can be overriden with Clis(during test run)
 
 - `testsuites/`: This folder contains the end-to-end (E2E)/api/api test suites for validating JFrog Xray workflows. These tests are written using the pytest framework and are designed to validate the integration between JFrog Artifactory and Xray.
 These tests validate both API and UI workflows, ensuring the correctness of JFrog Xray's functionality.
