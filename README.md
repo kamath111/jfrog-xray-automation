@@ -284,152 +284,158 @@ Install the pre-commit hooks defined in the .pre-commit-config.yaml file:
 
 
 ## Running tests:
-Navigate to folder: jfrog_xray
+    Navigate to folder: jfrog_xray
 
 - Run all tests in a suite:
-`pytest testsuites/<test_file>.py`
+    `pytest testsuites/<test_file>.py`
 
-Replace <test_file> with actual test, example:
-test_jfrog_xray_e2e_violation_validation.py 
+    Replace <test_file> with actual test, example:
+    test_jfrog_xray_e2e_violation_validation.py 
 
 - Run individual tests based on a pattern:
-`pytest testsuites/<test_file> -m e2e`
-(-m e2e is optional, to run specific test marker can be used, else all tests under test file will run)
+    `pytest testsuites/<test_file> -m e2e`
+    (-m e2e is optional, to run specific test marker can be used, else all tests under test file will run)
 
-Replace <test_file> with actual test, example:
-test_jfrog_xray_e2e_violation_validation.py 
+    Replace <test_file> with actual test, example:
+    test_jfrog_xray_e2e_violation_validation.py 
 
 ### Result of test run:(Log file and screenshots)
-- All notable actions and results will be output as a log in your console.
-- Use `log_level` as `DEBUG` in the test file to increase the log level from the default `INFO` log.
-- The result directory is output at the beginning of a test run.  e.g. `/jfrog_xray/results`
-- All tests consolidated detailed log will be added in full.log under results folder e.g. `/jfrog_xray/results/full.log`
-- For All UI validations, screenshot of specific UI are taken and will be stored during run time in results folder for specific test, e.g. `/jfrog_xray/results/<test_file>/full.log`
+    - All notable actions and results will be output as a log in your console.
+    - Use `log_level` as `DEBUG` in the test file to increase the log level from the default `INFO` log.
+    - The result directory is output at the beginning of a test run.  e.g. `/jfrog_xray/results`
+    - All tests consolidated detailed log will be added in full.log under results folder e.g. `/jfrog_xray/results/full.log`
+    - For All UI validations, screenshot of specific UI are taken and will be stored during run time in results folder for specific test, e.g. `      /jfrog_xray/results/<test_file>/full.log`
 
-Replace <test_file> with actual test, example:
-test_jfrog_xray_e2e_violation_validation.py 
-- Reference to set log_level to INFO,
-e.g./`pytest testsuites/<test_file> -m e2e --alluredir=results/allure-results --junitxml=results/junit-report.xml  -v --log-cli-level=INFO`
+    Replace <test_file> with actual test, example:
+    test_jfrog_xray_e2e_violation_validation.py 
+    - Reference to set log_level to INFO,
+    e.g./`pytest testsuites/<test_file> -m e2e --alluredir=results/allure-results --junitxml=results/junit-report.xml  -v --log-cli-level=INFO`
 
 ### Reports of test run:
 The JFrog Xray automation framework provides support for generating test reports in the following formats:
-- Allure report
-- Junitxml
+  - Allure report
+  - Junitxml
 
-Command to Generate Reports:
-To generate both Allure and JUnit XML reports, use the following command<either allure or junit can be used, or both can be used together as below.>
-e.g./`pytest testsuites/test_jfrog_xray_e2e_violation_validation.py -m e2e --alluredir=results/allure-results --junitxml=results/junit-report.xml  -v --log-cli-level=INFO`
+    Command to Generate Reports:
+    
+    To generate both Allure and JUnit XML reports, use the following command<either allure or junit can be used, or both can be used together as below.>
+    e.g./`pytest testsuites/test_jfrog_xray_e2e_violation_validation.py -m e2e --alluredir=results/allure-results --junitxml=results/junit-report.xml  -v --log-cli-level=INFO`
 
-Report Locations:
-JUnit XML Report:
-The JUnit XML report will be stored at:
-`/jfrog_xray/results/junit-report.xml`
+    Report Locations:
+    
+    JUnit XML Report:
+    The JUnit XML report will be stored at:
+    `/jfrog_xray/results/junit-report.xml`
 
-Allure Report:
-Pre requisite for Allure:
-Allure CLI must be installed to generate and view reports. 
+    Allure Report:
+    
+    Pre requisite for Allure:
+    Allure CLI must be installed to generate and view reports. 
 
-The Allure results will be stored at:
-`/jfrog_xray/results/allure-results`
+    The Allure results will be stored at:
+    
+    `/jfrog_xray/results/allure-results`
 
 #### Viewing Allure Report
 To view the Allure report after the test run:
 
 1. Ensure Allure CLI is installed. If not, install it using the following commands:
+   
    ```bash
    wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.20.1/allure-commandline-2.20.1.tgz
-  tar -zxvf allure-commandline-2.20.1.tgz -C /opt/
-  export PATH=$PATH:/opt/allure-2.20.1/bin
+    tar -zxvf allure-commandline-2.20.1.tgz -C /opt/
+    export PATH=$PATH:/opt/allure-2.20.1/bin
    ```
 
-Once the test is completed, you can serve and view the Allure report using the following steps:
+  Once the test is completed, you can serve and view the Allure report using the following steps:
 
-1. Run the following command from the VM to serve the Allure Report:
+2. Run the following command from the VM to serve the Allure Report:
 
-`allure serve results/allure-results --host 0.0.0.0 --port 8080`
+    `allure serve results/allure-results --host 0.0.0.0 --port 8080`
 
 3. Open a browser and navigate to the following URL to view the report:
-`http://<host_ip>:8080`
+   
+    `http://<host_ip>:8080`
 
-Replace <host_ip> with the IP address of the host machine.
+    Replace <host_ip> with the IP address of the host machine.
 
 # Troubleshooting
 1. Allure CLI Not Found
-Issue: Running allure serve results in a "command not found" error.
-Solution: Ensure Allure CLI is installed and added to the system's PATH.
-Verify installation:
-allure --version
+  Issue: Running allure serve results in a "command not found" error.
+  Solution: Ensure Allure CLI is installed and added to the system's PATH.
+  Verify installation:
+  allure --version
 
-If not installed, follow the installation steps in the Reports of Test Run section
+  If not installed, follow the installation steps in the Reports of Test Run section
 
 2. Missing geckodriver or Firefox
-Issue: Tests fail with errors related to the WebDriver or browser not being found.
-Solution:
-Install Firefox:
-sudo apt-get install firefox
-version: Mozilla Firefox 136.0
+  Issue: Tests fail with errors related to the WebDriver or browser not being found.
+  Solution:
+  Install Firefox:
+  sudo apt-get install firefox
+  version: Mozilla Firefox 136.0
 
-Install geckodriver:
-wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
-tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
+  Install geckodriver:
+  wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
+  tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
 
 3. Python Dependency Issues
-Issue: Errors occur due to missing or incompatible Python packages.
-Solution:
-Ensure you are using Python 3.8:
-python3.8 --version
-Install dependencies:
-python3.8 -m pip install -r requirements.txt
+  Issue: Errors occur due to missing or incompatible Python packages.
+  Solution:
+  Ensure you are using Python 3.8:
+  python3.8 --version
+  Install dependencies:
+  python3.8 -m pip install -r requirements.txt
 
 4. Test Fails Due to Incorrect Configuration
-Issue: Tests fail due to missing or incorrect configuration in config.yaml.
-Solution:
-Verify the config.yaml file contains valid values for:
-repoName
-user and password
-baseUrl
-Ensure the JFrog Artifactory/Xray instance is accessible from the test environment.
+  Issue: Tests fail due to missing or incorrect configuration in config.yaml.
+  Solution:
+  Verify the config.yaml file contains valid values for:
+  repoName
+  user and password
+  baseUrl
+  Ensure the JFrog Artifactory/Xray instance is accessible from the test environment.
 
 5. Allure Report Not Generated
-Issue: The allure-results folder is empty after running tests.
-Solution:
-Ensure the --alluredir option is included in the pytest command:
-pytest testsuites/<test_file>.py --alluredir=results/allure-results
+  Issue: The allure-results folder is empty after running tests.
+  Solution:
+  Ensure the --alluredir option is included in the pytest command:
+  pytest testsuites/<test_file>.py --alluredir=results/allure-results
 
-Verify that the allure-pytest package is installed:
-python3.8 -m pip install allure-pytest
+  Verify that the allure-pytest package is installed:
+  python3.8 -m pip install allure-pytest
 
 6. Permission Denied Errors
-Issue: Permission errors occur when running tests or accessing files.
-Solution:
-Ensure you have write permissions for the results directory:
-chmod -R 755 jfrog_xray/results
-Run the tests as a user with appropriate permissions.
+  Issue: Permission errors occur when running tests or accessing files.
+  Solution:
+  Ensure you have write permissions for the results directory:
+  chmod -R 755 jfrog_xray/results
+  Run the tests as a user with appropriate permissions.
 
 7.  Docker Issues
-Issue: Tests involving Docker fail due to Docker not being installed or accessible.
-Solution:
-Install Docker:
-sudo apt-get install docker.io
+  Issue: Tests involving Docker fail due to Docker not being installed or accessible.
+  Solution:
+  Install Docker:
+  sudo apt-get install docker.io
 
-Add your user to the Docker group:
-sudo usermod -aG docker $USER
+  Add your user to the Docker group:
+  sudo usermod -aG docker $USER
 
-Verify Docker is running:
-docker ps
+  Verify Docker is running:
+  docker ps
 
 8. Selenium WebDriver Errors
-Issue: Selenium WebDriver fails to initialize or interact with the browser.
-Solution:
-Ensure the correct version of selenium is installed:
-python3.8 -m pip install selenium==4.1.0
-Verify that the WebDriver matches the installed browser version.
+  Issue: Selenium WebDriver fails to initialize or interact with the browser.
+  Solution:
+  Ensure the correct version of selenium is installed:
+  python3.8 -m pip install selenium==4.1.0
+  Verify that the WebDriver matches the installed browser version.
 
 9. . Network Connectivity Issues
-Issue: Tests fail due to network connectivity issues with JFrog Artifactory/Xray.
-Solution:
-Verify the network connection to the JFrog instance
-ping <jfrog_base_url>
-Check if a proxy or firewall is blocking access.
+  Issue: Tests fail due to network connectivity issues with JFrog Artifactory/Xray.
+  Solution:
+  Verify the network connection to the JFrog instance
+  ping <jfrog_base_url>
+  Check if a proxy or firewall is blocking access.
 
-These troubleshooting steps should help resolve common issues encountered while running the JFrog Xray automation framework. 
+  These troubleshooting steps should help resolve common issues encountered while running the JFrog Xray automation framework. 
