@@ -1,0 +1,26 @@
+# Author: Shwetha Kamath
+# Repository configuration for JFrog Artifactory
+repository:
+  repoName: docker-local
+  packageType: docker
+  rclass: local
+  xrayIndex: true
+  customTag: "3.9"
+  customImageName: "alpine"
+
+# Authentication details for JFrog Artifactory
+authentication:
+  user: "kamathsh"
+  password: "Jfrogautomation1"
+  baseUrl: "https://trialxylzua.jfrog.io"
+  authToken: "eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJtU1R5S3NzMDZjTE4xdkNCV05mcjRyTHZxbUQ2Q2pYbzliNFl3ckphYTE0In0.eyJzdWIiOiJqZmFjQDAxanF6MHl0NGIzOTE5MTFyeDVjNG0wczl5L3VzZXJzL2thbWF0aHNoIiwic2NwIjoiYXBwbGllZC1wZXJtaXNzaW9ucy9hZG1pbiIsImF1ZCI6IipAKiIsImlzcyI6ImpmZmVAMDFqcXoweXQ0YjM5MTkxMXJ4NWM0bTBzOXkiLCJpYXQiOjE3NDM3Nzc3NTUsImp0aSI6IjQxNmEwYjk1LTgzNGItNDc5Yy1hNWEzLTY5ZDIwMTU2MTc4MyIsInRpZCI6ImEwbXQyZGd4cXppNWgifQ.DVmWOXVMWOuS9DjKpEZQC0hDdY0g86HO_94jiqQnRsedZ2b8cCLCH4ouF0JRlKrkt8Fl1OEaSStc5Q4kXNUnL-k3pJNNapF2JJJxMoj4FbN1wkj7vj04Q2diIsIs-oEKV6GaIDh2Z7ZHGrpNUZdY49sA5GYZtveHtD1xCEyEUnc122j5lc5cNkoJD5losUhiHDEBONMH9NZUj1PravB7wJSi0eS_ERpyp5cSrldgnRVGvVPQnYV5bgQC4xgI6WT0Tlp6AMydYj5sGkYNeJklYR2QNH8piiZJLZL8YhcuX41wTYacAKJslx-FYakpWFUJJoPgwPBH_s3tQKkLf6emQg"
+
+# Security policy configuration for JFrog Xray
+policy:
+  policyName: sec_policy_1
+  minSeverity: high
+
+# Watch configuration for JFrog Xray
+watch:
+  watchName: example1-watch
+  artifactPath: "alpine/3.9/manifest.json"
