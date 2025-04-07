@@ -30,31 +30,32 @@ Ensure the driver is executable and correctly configured in the system's PATH
 - `integration_core/`: This folder contains the core modules and utilities required for interacting with JFrog Xray APIs, any applications example: docker, handling exceptions, and managing helper functions for the automation framework.
 
   Subdirectories and Files:
+  
      constants.py:
      Defines constants used across the framework, such as scan intervals and timeouts for JFrog Xray operations.
 
-enums.py:
-Contains enumerations for standardizing request types, endpoints, and other fixed values used in the framework.
+     enums.py:
+     Contains enumerations for standardizing request types, endpoints, and other fixed values used in the framework.
 
-exceptions.py:
-Defines custom exception classes for handling errors specific to JFrog Xray operations.
+     exceptions.py:
+     Defines custom exception classes for handling errors specific to JFrog Xray operations.
 
-helpers/:
-jfrog_helpers.py:
-Provides helper functions for common tasks like authentication, repository creation, 
-artifact uploads, and Xray scans.
+     helpers/:
+     jfrog_helpers.py:
+     Provides helper functions for common tasks like authentication, repository creation, 
+     artifact uploads, and Xray scans.
 
-models/:
-clients.py:
-Contains data models and client classes for interacting with JFrog services/third party models- Docker
+     models/:
+     clients.py:
+     Contains data models and client classes for interacting with JFrog services/third party models- Docker
 
-utils/:
-jfrog_service.py:
-Implements the JFrogAPIClient class, which provides methods for interacting with JFrog APIs. Key functionalities include:
-Logging in to JFrog.
-Creating repositories and security policies.
-Managing watches.
-Checking scan statuses and retrieving violations.
+     utils/:
+     jfrog_service.py:
+     Implements the JFrogAPIClient class, which provides methods for interacting with JFrog APIs. Key functionalities include:
+     Logging in to JFrog.
+     Creating repositories and security policies.
+     Managing watches.
+     Checking scan statuses and retrieving violations.
 
 - `page_objects/`: This folder contains Page Object Model (POM) classes for automating interactions with the JFrog Xray web interface. Each page class encapsulates the locators and methods for interacting with a specific page or component of the JFrog Xray web interface.
 These classes are used in test scripts to perform actions like logging in, navigating to sections, and validating UI elements.
