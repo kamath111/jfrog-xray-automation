@@ -29,9 +29,9 @@ Ensure the driver is executable and correctly configured in the system's PATH
 
 - `integration_core/`: This folder contains the core modules and utilities required for interacting with JFrog Xray APIs, any applications example: docker, handling exceptions, and managing helper functions for the automation framework.
 
-Subdirectories and Files:
-constants.py:
-Defines constants used across the framework, such as scan intervals and timeouts for JFrog Xray operations.
+  Subdirectories and Files:
+     constants.py:
+     Defines constants used across the framework, such as scan intervals and timeouts for JFrog Xray operations.
 
 enums.py:
 Contains enumerations for standardizing request types, endpoints, and other fixed values used in the framework.
