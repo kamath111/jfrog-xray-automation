@@ -9,6 +9,7 @@
     Ensure modularity, scalability, and maintainability of the framework.
 
 2. Framework Architecture
+   
     2.1 Layers of the Framework
 
         jfrog_xray/testsuites
@@ -57,7 +58,7 @@
         Reporting Layer:
         Allure and junitxml customised reporting
 
-3. Key Components
+4. Key Components
     3.1 Test Cases
         Written in pytest for modularity and scalability.
         Use @pytest.mark for metadata and grouping.
@@ -105,7 +106,7 @@
         Repository and policy names (repo_name, policy_name).
         Docker image details (source_image, target_image).
 
-4. Workflow Design
+5. Workflow Design
     4.1 End-to-End Workflow
 
         Repository Creation:
@@ -133,7 +134,7 @@
         Log in to the JFrog UI.
         Navigate to the Xray section and validate violations displayed in the UI.
 
-5. Best Practices
+6. Best Practices
     5.1 Modular Design
         Separate API, UI, and Docker interactions into distinct layers.
         Use reusable methods for common operations (e.g., token generation, repository creation).
