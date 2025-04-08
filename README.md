@@ -3,13 +3,14 @@
 2. [Code Organization](#code-organization)
 3. [How to Add a Test Suite](#how-to-add-a-test-suite)
 4. [Requirements](#requirements)
-5. [Prerequisites](#prerequisites)
-6. [Code Quality Tools](#codequalitytools)
-7. [Running Tests](#running-tests)
-8. [Result of Test Run](#result-of-test-run)
-9. [Reports of Test Run](#reports-of-test-run)
-10. [Viewing Allure Report](#viewing-allure-report)
-11. [Troubleshooting](#troubleshooting)
+5. [pytest.ini Configuration](#pytest.iniconfiguration)
+6. [Prerequisites](#prerequisites)
+7. [Code Quality Tools](#codequalitytools)
+8. [Running Tests](#running-tests)
+9. [Result of Test Run](#result-of-test-run)
+10. [Reports of Test Run](#reports-of-test-run)
+11. [Viewing Allure Report](#viewing-allure-report)
+12. [Troubleshooting](#troubleshooting)
 
 # JFrog Xray Automation
 - The jfrog_xray automation framework contains the JFrog library, which enables interacting with Jfrog end product(xray).
@@ -125,7 +126,26 @@ It simplifies test setup by providing reusable fixtures and hooks for logging, c
 - Write your test cases using the pytest framework. Use descriptive function names and include relevant assertions.(Reference file: jfrog_xray/testsuites/test_jfrog_xray_e2e_violation_validation.py)
 - Use markers for running and grouping tests, test_matadata fixture to add in report
 - Leverage the fixture defined in conftest.py for logging, configuration, or WebDriver setup
-- Follow naming conventions for test files and functions (e.g., test_*.py and test_*) 
+- Follow naming conventions for test files and functions (e.g., test_*.py and test_*)
+
+## pytest.ini Configuration
+The `pytest.ini` file is a configuration file for the pytest framework. It defines custom markers and other settings to organize and run tests effectively in the JFrog Xray automation framework.
+
+  Key Configurations in pytest.ini:
+- **Markers**: Custom markers are used to categorize and selectively run tests. The following markers are defined:
+  - `test_metadata`: Custom marker for adding metadata to tests.
+  - `e2e`: Marker for end-to-end tests.
+  - `ui`: Marker for UI tests.
+  - `api`: Marker for API tests.
+  - `unit`: Marker for unit tests.
+  - `integration`: Marker for integration tests.
+ 
+  How to Use pytest.ini:
+      The pytest.ini file is automatically detected by pytest when running tests from the project root directory.
+      You can use the markers defined in the pytest.ini file to selectively run specific types of tests. For example:
+  
+      Run only end-to-end tests:
+            pytest -m e2e
 
 ## Requirements:
 - Assumed environment used: Ubuntu Ubuntu 20.04.5 LTS with updated package versions (i.e. Docker).
