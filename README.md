@@ -221,7 +221,7 @@ Install pre-commit:(This is already defind as part of requirements.txt)
 
 Install the pre-commit hooks defined in the .pre-commit-config.yaml file:
 
-  pre-commit install
+      pre-commit install
 
 - Pre-Commit Hooks Used
   
